@@ -385,7 +385,7 @@ export async function oldGlibc(min: semver.Range): Promise<semver.Range|null> {
   const line = output.split('\n', 1)[0];
   // Require some confirmation this is [e]glibc, and a plausible
   // version number.
-  const match = line.match(/^ldd .*glibc.* (\d+(?:\.\d+)+)[^ ]*$/i);
+  const match = line.match(/^ldd .*(glibc|gnu libc).* (\d+(?:\.\d+)+)[^ ]*$/i);
   if (!match || !semver.validRange(match[1], loose)) {
     console.error(`Can't glibc version from ldd --version output: ${line}`);
     return null;
